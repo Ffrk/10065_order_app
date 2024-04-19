@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="orderapp.MainPage">
+
+        <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+
+        <Label Text="Welcome to Our Menu" 
+           HorizontalOptions="Center" 
+           FontAttributes="Bold"/>
+
+        <CollectionView x:Name="menuItemsCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" HorizontalOptions="End"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Place Order" Clicked="OnPlaceOrderClicked"/>
+    </VerticalStackLayout>
+
+
+
+</ContentPage>
