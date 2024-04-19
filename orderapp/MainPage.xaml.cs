@@ -1,25 +1,23 @@
-﻿namespace orderapp
+namespace orderapp
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private MainViewModel viewModel;
 
         public MainPage()
         {
             InitializeComponent();
+            viewModel = new MainViewModel();
+            this.BindingContext = viewModel;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        async void OnItemSelected(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            var menuItem = (sender as BindableObject)?.BindingContext as MenuItem;
+            if (menuItem != null)
+            {
+                await Navigation.PushAsync(new ProductDetailPage(menuItem));
+            }
         }
     }
-
 }
